@@ -94,11 +94,13 @@ def search_elf_local(search_dir, Radio_version):
 def update_cmm(read_cmm, write_cmm, replace_target, replace_object):
     with open(write_cmm, 'w') as output_file, open(read_cmm, 'r') as input_file:
         for line in input_file:
-            output_file.write(line.replace(replace_target, replace_object)) 
-
-
-
-
+            for replace_index in range(len(replace_target)):
+                if replace_target[replace_index] in line:
+                    output_file.write(line.replace(replace_target[replace_index], replace_object[replace_index]))
+                    break
+                elif replace_index == len(replace_target)-1:
+                    output_file.write(line)    
+                    break
 
 #========================================================== 
 # Variable declarification
