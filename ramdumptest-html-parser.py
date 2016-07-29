@@ -158,8 +158,16 @@ if ELF_file_location == 0:
 if ELF_file_location == 0:
     print('Fail to find ELF')
 else:
-    update_cmm(read_loadsim_cmm_all, write_loadsim_cmm_all, 'BIN_location',BIN_file_location)
-    update_cmm(read_loadsyms_cmm_all, write_loadsyms_cmm_all, 'ELF_location_HTC',ELF_file_location)    
-    os.system(T32_full_path + ' -s' +write_loadsim_cmm_all)         
+    Replace_in_loadsim = ['DIALOG.FILE *.bin', 'ENTRY &DDRCS0_FILENAME'                    , 'do std_loadsyms_mpss &logpath'           ]
+    Replace_out_loadsim= [                 '', '&DDRCS0_FILENAME="'+BIN_file_location+'"'  , 'do std_loadsyms_mpss_poser_out &logpath' ]
             
+    Replace_in_loadsyms = ['DIALOG.FILE "&filepath/*&RootElfSuffix"' , 'ENTRY &rvalue_elffile'                   , 'DIALOG.FILE "*&RootElfSuffix"'    ]
+    Replace_out_loadsyms= [''                                        , '&rvalue_elffile="'+ELF_file_location+'"' , ''                                 ]    
  
+    Replace_in_recover_f3 = ['cd.do ../../../../../modem_proc/core/services/diag/f3_trace/cmm/recover_f3.cmm  &nowpath']
+    Replace_out_recover_f3= ['cd.do ../../../../../../modem_proc/core/services/diag/f3_trace/cmm/recover_f3.cmm  '+os.path.dirname(BIN_file_location)]    
+   
+    
+    update_cmm(read_loadsim_cmm_all, write_loadsim_cmm_all, Replace_in_loadsim, Replace_out_loadsim)
+    update_cmm(read_loadsyms_cmm_all, write_loadsyms_cmm_all, Replace_in_loadsyms,Replace_out_loadsyms)
+    os.system(T32_full_path + ' -s ' +write_loadsim_cmm_all)
