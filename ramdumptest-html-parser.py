@@ -105,12 +105,15 @@ def update_cmm(read_cmm, write_cmm, replace_target, replace_object):
 #========================================================== 
 # Variable declarification
 #==========================================================
-cmm_path = r'\common\Core\tools\cmm\common\msm8996\\'
+cmm_path = r'\common\Core\tools\cmm\common\msm8996'
 
-Codebase_root_folder = r'D:\codebase\8996\8996_AND_LA_1.9_11701_UMTS_24.00_0624_3852742_160'
+Codebase_root_folder = r'D:\codebase\8996\8996_AND_LA_1.9_12301_UMTS_29.01_0726_c0e35ff_189'
 
-read_loadsim_cmm = r'std_loadsim_mpss_htc_8996_poser.cmm'
-write_loadsim_cmm = r'std_loadsim_mpss_htc_8996_poser_out.cmm'
+read_loadsim_cmm = r'\std_loadsim_mpss_htc_8996.cmm'
+write_loadsim_cmm = r'\std_loadsim_mpss_htc_8996_poser_out.cmm'
+
+read_loadsyms_cmm = r'\std_loadsyms_mpss.cmm'
+write_loadsyms_cmm = r'\std_loadsyms_mpss_poser_out.cmm'
 
 read_loadsyms_cmm = r'std_loadsyms_mpss_poser.cmm'
 write_loadsyms_cmm = r'std_loadsyms_mpss_poser_out.cmm'
