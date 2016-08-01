@@ -124,6 +124,8 @@ write_loadsim_cmm_all = Codebase_root_folder+cmm_path+write_loadsim_cmm
 read_loadsyms_cmm_all = Codebase_root_folder+cmm_path+read_loadsyms_cmm
 write_loadsyms_cmm_all = Codebase_root_folder+cmm_path+write_loadsyms_cmm
 
+read_recover_f3_cmm_all = Codebase_root_folder+cmm_path+read_recover_f3_cmm
+write_recover_f3_cmm_all = Codebase_root_folder+cmm_path+write_recover_f3_cmm
 
 Radio_release_root = r'\\10.116.56.36\Release'
 T32_full_path = r'D:\M1\T32_D\bin\windows64\t32mqdsp6'
@@ -170,4 +172,7 @@ else:
     
     update_cmm(read_loadsim_cmm_all, write_loadsim_cmm_all, Replace_in_loadsim, Replace_out_loadsim)
     update_cmm(read_loadsyms_cmm_all, write_loadsyms_cmm_all, Replace_in_loadsyms,Replace_out_loadsyms)
+    update_cmm(read_recover_f3_cmm_all, write_recover_f3_cmm_all, Replace_in_recover_f3,Replace_out_recover_f3)
+    #change to correct dir
+    os.chdir(Codebase_root_folder+cmm_path)    
     os.system(T32_full_path + ' -s ' +write_loadsim_cmm_all)
