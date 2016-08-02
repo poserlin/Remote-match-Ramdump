@@ -160,8 +160,8 @@ if ELF_file_location == 0:
 if ELF_file_location == 0:
     print('Fail to find ELF')
 else:
-    Replace_in_loadsim = ['DIALOG.FILE *.bin', 'ENTRY &DDRCS0_FILENAME'                    , 'do std_loadsyms_mpss &logpath'           ]
-    Replace_out_loadsim= [                 '', '&DDRCS0_FILENAME="'+BIN_file_location+'"'  , 'do std_loadsyms_mpss_poser_out &logpath' ]
+    Replace_in_loadsim = ['DIALOG.FILE *.bin', 'ENTRY &DDRCS0_FILENAME'                    , 'do std_loadsyms_mpss &logpath'           ,'v.write #1 "RCMS_Name = " %STanDard %string htc_smem_ram.RCMS_Name']
+    Replace_out_loadsim= [                 '', '&DDRCS0_FILENAME="'+BIN_file_location+'"'  , 'do std_loadsyms_mpss_poser_out &logpath' ,'v.write #1 "qc_image_version_string = " %STanDard %string coredump.image.qc_image_version_string']
             
     Replace_in_loadsyms = ['DIALOG.FILE "&filepath/*&RootElfSuffix"' , 'ENTRY &rvalue_elffile'                   , 'DIALOG.FILE "*&RootElfSuffix"'    ]
     Replace_out_loadsyms= [''                                        , '&rvalue_elffile="'+ELF_file_location+'"' , ''                                 ]    
