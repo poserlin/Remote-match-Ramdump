@@ -115,9 +115,6 @@ write_loadsim_cmm = r'\std_loadsim_mpss_htc_8996_poser_out.cmm'
 read_loadsyms_cmm = r'\std_loadsyms_mpss.cmm'
 write_loadsyms_cmm = r'\std_loadsyms_mpss_poser_out.cmm'
 
-read_recover_f3_cmm = r'\recovery_f3_htc.cmm'
-write_recover_f3_cmm = r'\recovery_f3_htc_out.cmm'
-
 read_loadsim_cmm_all = Codebase_root_folder+cmm_path+read_loadsim_cmm
 write_loadsim_cmm_all = Codebase_root_folder+cmm_path+write_loadsim_cmm
 
