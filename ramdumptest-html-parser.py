@@ -11,6 +11,7 @@ import fnmatch
 import subprocess
 import shutil
 
+import zipfile
 
 from lxml import etree
 from lxml import html
@@ -171,3 +172,23 @@ else:
     #change to correct dir
     os.chdir(Codebase_root_folder+cmm_path)    
     os.system(T32_full_path + ' -s ' +write_loadsim_cmm_all)
+    case_number = input("Case#?, empty for skip the zip process: \r\n")
+    if case_number != '':
+        print('Zip everything for case#',case_number)
+      
+        os.chdir(os.path.dirname(BIN_file_location))
+        with open('coredump.txt', 'r') as input_file:
+            for line in input_file:
+                if 'coredump.err.filename = ' in line:
+                    crash_filename = line.rstrip().split('= ')[1]
+                if 'coredump.err.linenum' in line:
+                    crash_fileline = line.rstrip().split('= ')[1]        
+        
+        case_zip_file = zipfile.ZipFile('case'+case_number+'@'+crash_filename+'#'+crash_fileline+'.zip', mode = 'w')
+        case_zip_file.write('f3log.txt')
+        case_zip_file.write('coredump.txt')
+        
+        case_zip_file.write(BIN_file_location, os.path.basename(BIN_file_location))
+        case_zip_file.write(ELF_file_location, os.path.basename(ELF_file_location))
+        case_zip_file.close()
+        
