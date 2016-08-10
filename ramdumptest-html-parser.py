@@ -2,16 +2,11 @@ import os
 import re
 import sys
 import math
-import signal
-import socket
-import timeit
 import platform
 import threading
 import binascii
 import codecs
 import re
-import ssl
-import requests
 import fnmatch
 import subprocess
 import shutil
