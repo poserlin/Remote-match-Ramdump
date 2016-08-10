@@ -23,11 +23,10 @@ from lxml import html
 #Define the Search elf based on provide radio version
 def search_elf(search_dir, Radio_version):
     for dirPath, dirNames, fileNames in os.walk(search_dir):   
-        for x in fileNames:
-            if fnmatch.fnmatch(x, '*'+Radio_version+'*.img'):                
-                for elf in os.listdir(dirPath):
-                    if fnmatch.fnmatch(elf, 'M*.elf'):
-                        ELF_file = os.path.join(dirPath, elf)
+        for x in filter(lambda Radio_image_name: fnmatch.fnmatch(Radio_image_name, '*'+Radio_version+'*.img'), fileNames):
+            Full_Radio_version = x.split('_')[1]
+            for elf in filter( lambda all_file_name: fnmatch.fnmatch(all_file_name, 'M*.elf'), fileNames):
+                ELF_file = os.path.abspath(elf)
                         print('Match ELF is \r\n %s' %ELF_file)
                         return ELF_file
 
@@ -36,11 +35,9 @@ def search_elf_remote(Radio_release_root, Radio_str):
     print('>>> Searching Remotely......', end='')
     # Search remote dir by release ver
     if len(Radio_str) == 3: # full radio version, parser & speed up search by release version
-        for dir_1 in os.listdir(Radio_release_root): 
-            if re.search(Radio_str[1], dir_1):
+        for dir_1 in filter(lambda chip_name: re.search(Radio_str[1], chip_name), os.listdir(Radio_release_root)):
                 new_path = os.path.join(Radio_release_root, dir_1)
-                for dir_2 in os.listdir(new_path):
-                    if re.search(Radio_str[2], dir_2):
+            for dir_2 in filter(lambda codebase_name: re.search(Radio_str[2], codebase_name), os.listdir(new_path)):
                         new_path = os.path.join(new_path, dir_2)
                         ELF_file_remote_location = search_elf(new_path, Radio_version)                        
                         
