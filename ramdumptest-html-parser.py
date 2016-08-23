@@ -1,20 +1,9 @@
+import fnmatch
 import os
 import re
-import sys
-import math
-import platform
-import threading
-import binascii
-import codecs
-import re
-import fnmatch
-import subprocess
 import shutil
-
 import zipfile
 
-from lxml import etree
-from lxml import html
 
 
 #========================================================== 
